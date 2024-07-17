@@ -1,0 +1,36 @@
+seed_everything: 43
+trainer:
+    logger:
+      class_path: lightning.pytorch.loggers.WandbLogger
+      init_args:
+        project: "hybrid"
+        save_dir: "outputs"
+    max_epochs: 250
+    check_val_every_n_epoch: 10
+    accelerator: "auto"
+    gradient_clip_val: 0.5
+    deterministic: false
+
+    callbacks: 
+        - class_path: lightning.pytorch.callbacks.ModelCheckpoint
+          init_args: 
+            save_last: true
+data:
+    class_path: src.dataset.BrainDataModule
+    init_args:
+        dataset_keys: 
+            - ABIDE-Rest
+        y_key: "piq"
+        batch_size: 128
+        num_workers: 8
+model:
+    class_path: src.model.RegressionModule
+    init_args:
+        learning_rate: 0.0001
+        beta: 0.2
+        model:
+            class_path: src.hybrid.model.HyBRiD
+            init_args:
+                n_nodes: 200
+                n_hypers: 32
+                hidden_size: 256
