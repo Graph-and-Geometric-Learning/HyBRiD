@@ -19,7 +19,7 @@ Make sure you follow the guidance in the **Installation** section and run the fo
 ```shell
 python main.py -c config/hybrid.yaml
 ```
-This will train the model and report the metrics.
+This will train the model and report the metrics on the ABIDE FIQ task.
 
 
 ## TODO
