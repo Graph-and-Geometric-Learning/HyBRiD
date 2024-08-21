@@ -20,7 +20,7 @@ The repo is implemented in `python3.10` and I use the new typing convention (e.g
 ### If you want to run our experiment
 Make sure you follow the guidance in the **Installation** section and run the following command
 ```shell
-python main.py -c config/hybrid.yaml
+python main.py -c config/hybrid-fiq.yaml
 ```
 This will train the model and report the metrics on the ABIDE FIQ task.
 
