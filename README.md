@@ -4,8 +4,11 @@ This is the official implementation of ICML 2024 paper [Learning High-Order Rela
 
 
 ## Installation
-Make sure you have [git-lfs](https://git-lfs.com/) installed in order to [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the preprocessed dataset.
+Make sure you have [git-lfs](https://git-lfs.com/) installed in order to [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the preprocessed dataset. Altenatively, you can download from [Google Drive](https://drive.google.com/drive/folders/1SvhOlPAIHVX4AYy-hU9Ik7-lKX7u1Ti2?usp=sharing).
 After cloning the repo, please check the provided `environment.yml` to install the [conda environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file).
+```
+conda env create -f environment.yml
+```
 
 ## Usage
 ### If you want to integrate HyBRiD into your own project
