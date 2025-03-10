@@ -10,6 +10,12 @@ After cloning the repo, please check the provided `environment.yml` to install t
 conda env create -f environment.yml
 ```
 
+### Dataset
+Besides directly download it from the host, `scripts/download_and_preprocess_ABIDE.py` is used to download and preprocess the ABIDE dataset.
+```
+python scripts/download_and_preprocess_ABIDE.py /path/to/your/output.h5
+```
+
 ## Usage
 ### If you want to integrate HyBRiD into your own project
 Copy the folder `src/hybrid` to your local storage, and use it by `from hybrid import HyBRiD`. Check the docstring and type hints in the file for more details.
@@ -26,7 +32,7 @@ This will train the model and report the metrics on the ABIDE FIQ task.
 
 
 ## TODO
-- [ ] Data preprocessing scripts
+- [x] Data preprocessing scripts
 - [ ] Baselines comparison (including Brain Network Transformer)
 
 **Note:**
