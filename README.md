@@ -11,7 +11,7 @@ conda env create -f environment.yml
 ```
 
 ### Dataset
-Besides directly download it from the host, `scripts/download_and_preprocess_ABIDE.py` is used to download and preprocess the ABIDE dataset.
+Besides directly downloading the data from the host, `scripts/download_and_preprocess_ABIDE.py` is used to download and preprocess the ABIDE dataset.
 ```
 python scripts/download_and_preprocess_ABIDE.py /path/to/your/output.h5
 ```
