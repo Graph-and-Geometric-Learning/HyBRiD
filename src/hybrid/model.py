@@ -87,9 +87,9 @@ class HyBRiDWeighter(nn.Module):
 
 
 class HyBRiD(nn.Module):
-    def __init__(self, n_hypers: int, hidden_size: int, n_nodes: int) -> None:
+    def __init__(self, n_hypers: int, hidden_size: int, n_nodes: int, dropout: float) -> None:
         super().__init__()
-        self.constructor = HyBRiDConstructor(n_hypers=n_hypers, n_nodes=n_nodes)
+        self.constructor = HyBRiDConstructor(n_hypers=n_hypers, n_nodes=n_nodes, dropout=dropout)
         self.weighter = HyBRiDWeighter(
             d_model=n_nodes, hidden_size=hidden_size, n_hypers=n_hypers
         )

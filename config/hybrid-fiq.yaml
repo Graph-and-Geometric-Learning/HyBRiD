@@ -20,8 +20,8 @@ data:
     init_args:
         dataset_keys: 
             - ABIDE-Rest
-        y_key: "piq"
-        batch_size: 8
+        y_key: "fiq"
+        batch_size: 4
         num_workers: 8
 model:
     class_path: src.model.RegressionModule

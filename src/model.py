@@ -38,6 +38,7 @@ class RegressionModule(LightningModule):
         self,
         model: nn.Module,
         learning_rate: float,
+        weight_decay: float = 0.01,
         beta: float = 0.0,
         node_entropy: dict[str, np.ndarray] = None,
     ) -> None:
@@ -46,6 +47,7 @@ class RegressionModule(LightningModule):
 
         self.model = model
         self.learning_rate = learning_rate
+        self.weight_decay = weight_decay
         self.beta = beta
 
         for key, value in node_entropy.items():
@@ -57,7 +59,7 @@ class RegressionModule(LightningModule):
         self.mse = MeanSquaredError()
 
     def configure_optimizers(self):
-        optimizer = torch.optim.AdamW(self.parameters(), lr=self.learning_rate)
+        optimizer = torch.optim.AdamW(self.parameters(), lr=self.learning_rate, weight_decay=self.weight_decay)
 
         def lr_scaler(epoch):
             warmup_epoch = 100
@@ -172,4 +174,5 @@ class RegressionModule(LightningModule):
                 "train_id": np.asarray(train_ids),
                 "test_id": np.asarray(test_ids),
             }
-            cpm(X, Y, train_test_split)
+            R, P = cpm(X, Y, train_test_split)
+            print("CPM_R:", R.item())

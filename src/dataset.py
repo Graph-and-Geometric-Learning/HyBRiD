@@ -157,7 +157,7 @@ class BrainDataModule(LightningDataModule):
         if stage != "fit":
             return
 
-        datasets = {"train": defaultdict(list), "val": defaultdict(list)}
+        datasets = {"train": defaultdict(list), "val": defaultdict(list), "test": defaultdict(list)}
         for dataset in self.datasets:
             dataset_name, task_name = dataset.dataset_name, dataset.task_name
             train_ids, test_ids = self.get_train_test_split(dataset_name, task_name)
@@ -172,19 +172,17 @@ class BrainDataModule(LightningDataModule):
             values = np.digitize(
                 values, bins=np.linspace(min_, max_, 6)[1:], right=True
             )
-            train_ids, val_ids, _, _ = train_test_split(
-                train_ids, values, test_size=1 / 8, stratify=values
-            )
-
-            """
-            NOTE: The performance is really unstable under different random seeds due to the size of the dataset. Therefore, we select the optimal hyperparameters on the validation dataset, and re-train the model using both of the training dataset and the validation dataset.
-            """
-            train_ids = train_ids + val_ids
-            val_ids = test_ids
+            if False:
+                """
+                NOTE: The performance is really unstable under different random seeds due to the size of the dataset. Therefore, we select the optimal hyperparameters on the validation dataset, and re-train the model using both of the training dataset and the validation dataset.
+                """
+                train_ids, val_ids, _, _ = train_test_split(
+                    train_ids, values, test_size=1 / 8, stratify=values
+                )
             datasets["train"][task_name].append(Subset(dataset, train_ids))
 
         datasets = dict(datasets)
-        for split in ["train"]:
+        for split in datasets.keys():
             for task, datasets_of_task in datasets[split].items():
                 datasets[split][task] = ConcatDataset(datasets_of_task)
         self.train = MultiSourceDataset(datasets["train"])

@@ -5,7 +5,7 @@ trainer:
       init_args:
         project: "hybrid"
         save_dir: "outputs"
-    max_epochs: 250
+    max_epochs: 100
     check_val_every_n_epoch: 10
     accelerator: "auto"
     gradient_clip_val: 0.5
@@ -21,7 +21,7 @@ data:
         dataset_keys: 
             - ABIDE-Rest
         y_key: "piq"
-        batch_size: 8
+        batch_size: 4
         num_workers: 8
 model:
     class_path: src.model.RegressionModule
