@@ -29,11 +29,3 @@ Make sure you follow the guidance in the **Installation** section and run the fo
 python main.py -c config/hybrid-piq.yaml
 ```
 This will train the model and report the metrics on the ABIDE PIQ task.
-
-
-## TODO
-- [x] Data preprocessing scripts
-- [ ] Baselines comparison (including Brain Network Transformer)
-
-**Note:**
-Please urge me if you need any of the above items.
